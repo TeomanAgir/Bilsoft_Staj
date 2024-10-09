@@ -112,6 +112,27 @@ namespace Bilsoft.MVVM.ViewModel
             OnPropertyChanged(nameof(DataTable));
         }
 
+        private double _toplamEFatura;
+        public double ToplamEFatura
+        {
+            get => _toplamEFatura;
+            set
+            {
+                _toplamEFatura = value;
+                OnPropertyChanged(nameof(ToplamEFatura)); // UI'yi güncellemek için
+            }
+        }
+        private double _aylikIrsaliye;
+        public double AylikIrsaliye
+        {
+            get => _aylikIrsaliye;
+            set
+            {
+                _aylikIrsaliye = value;
+                OnPropertyChanged(nameof(AylikIrsaliye)); // UI'yi güncellemek için
+            }
+        }
+
         private void UpdateChart()
         {
 
@@ -120,6 +141,8 @@ namespace Bilsoft.MVVM.ViewModel
             // İlk veri setini alıyoruz
             var values = filteredData.FirstOrDefault() ?? new double[] { 0, 0, 0, 0 };
 
+            ToplamEFatura = values[0] + values[1] + values[3];
+            AylikIrsaliye = values[2];
             Series = new ObservableCollection<ISeries>
             {
                 new ColumnSeries<double>

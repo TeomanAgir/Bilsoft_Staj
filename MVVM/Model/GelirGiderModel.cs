@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 
@@ -31,9 +32,11 @@ namespace Bilsoft.MVVM.Model
                 {
                     return new double[]
                     {
-                        double.Parse(data[5]), //İşlem Yapılan Gün Sayısı
-                        double.Parse(data[6]), // Gelir sütunu
-                        double.Parse(data[8])  // Gider sütunu
+                        
+                        double.Parse(data[5], CultureInfo.InvariantCulture), // İşlem Yapılan Gün Sayısı
+                        double.Parse(data[6], CultureInfo.InvariantCulture), // Gelir sütunu
+                        double.Parse(data[8], CultureInfo.InvariantCulture)  // Gider sütunu
+                
                     };
                 }
                 catch (IndexOutOfRangeException)

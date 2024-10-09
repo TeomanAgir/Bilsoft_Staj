@@ -13,7 +13,7 @@
         <Grid>
             <Grid.ColumnDefinitions>
 
-                <ColumnDefinition Width="400"/>
+                <ColumnDefinition Width="575"/>
                 <ColumnDefinition/>
 
             </Grid.ColumnDefinitions>
@@ -21,24 +21,22 @@
             <Grid.RowDefinitions>
 
                 <RowDefinition Height="30"/>
-                <RowDefinition Height="265"/>
-                <RowDefinition Height="20"/>
+                <RowDefinition Height="276"/>
+                <RowDefinition Height="9"/>
                 <RowDefinition Height="30"/>
                 <RowDefinition/>
 
             </Grid.RowDefinitions>
             <StackPanel Grid.Row="0" Grid.Column="0">
-                <TextBlock Foreground="#FF26344B" FontWeight="Bold" FontSize="18" >
-                    Çevrimdışı e-Fatura Analizi
-                </TextBlock>
+                <TextBlock Foreground="#FF26344B" FontWeight="Bold" FontSize="18" ><Run Text="Çevrimdışı e-Fatura Analizi"/><Run Language="en-gb" Text=" - Gelir/Gider"/></TextBlock>
             </StackPanel>
             <StackPanel Grid.Column="0"
                         Grid.Row="1"
-                        Grid.ColumnSpan="2" Grid.RowSpan="1">
+                        Grid.ColumnSpan="1" Grid.RowSpan="1">
                 <Border >
                     <!-- Bar Chart -->
-                    <lvc:CartesianChart Height="260" Width="432"
-                                    HorizontalAlignment="Center" 
+                    <lvc:CartesianChart Height="269" Width="572"
+                                    HorizontalAlignment="Left" 
                                     Series="{Binding Series}"
                                     ZoomMode="Both"
                                     XAxes="{Binding XAxes}"
@@ -47,21 +45,35 @@
                     </lvc:CartesianChart>
                 </Border>
             </StackPanel>
-            <StackPanel Grid.Row="2" Grid.ColumnSpan="2">
-                <TextBlock FontSize="15" FontWeight="Bold" VerticalAlignment="Top" HorizontalAlignment="Center" Foreground="Black">
-                    Aylık Gelir gider Tablosu
-                </TextBlock>
+            <StackPanel Grid.Row="2" Grid.ColumnSpan="2"/>
+            <StackPanel Grid.Row="2" Grid.Column="1"/>
+            <StackPanel Grid.Column="1" Grid.Row="1">
+                <Border Grid.Row="1" Grid.Column="1" Height="100">
+
+
+                    <TextBlock FontSize="16" FontWeight="Bold" Foreground="#FF26344B" Margin="10,10,10,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="88">
+                        <Run Text="Bu Ay İşlem Yapılan &#x0a;Gün Sayısı:" />
+                        <LineBreak/>
+                        <Run FontSize="24" Foreground="Black" Text="{Binding IslemYapilanGunSayisi}"/>
+                        <Run FontSize="24" Foreground="Black" Text=" Gün"/>
+                    </TextBlock>
+                </Border>
+                <Border>
+                    <TextBlock FontSize="16" FontWeight="Bold" Foreground="#FF26344B" Margin="10,10,10,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="88">
+                            <Run Text="Bu Ay Net Kazanç &#x0a;Miktarı:" />
+                            <LineBreak/>
+                            <Run FontSize="24" Foreground="Black" Text="{Binding AylikNetKazanc}"/>
+                            <Run FontSize="24" Foreground="Black" Text=" TL"/>
+                    </TextBlock>
+
+                </Border>
+                
 
             </StackPanel>
-            <StackPanel Grid.Row="2" Grid.Column="2"/>
-            <Border Grid.Row="1" Grid.Column="2">
-                <!-- Bar Chart -->
-            </Border>
+
             <StackPanel Grid.Row="3" Orientation="Horizontal">
 
-                <ComboBox x:Name="MonthsComboBox" Width="80" Height="20" 
-                          HorizontalAlignment="Center" 
-                          VerticalAlignment="Center"
+                <ComboBox x:Name="MonthsComboBox" Width="80" Height="20" Margin="15,0,0,0"
                           Foreground="Black"
                           SelectedIndex="0" 
                           ItemsSource="{Binding AvailableMonths}" SelectedItem="{Binding SelectedMonth}" />
@@ -79,7 +91,7 @@
                         HorizontalAlignment="Center" VerticalAlignment="Center"
                         Foreground="White" Cursor="Hand">
                     <Button.Style>
-                        <Style TargetType="Button">
+                        <Style TargetType="{x:Type Button}">
                             <Setter Property="Background" Value="#FFF48021"/>
                             <Setter Property="Cursor" Value="Hand"/>
                             <Style.Triggers>
@@ -90,7 +102,7 @@
                         </Style>
                     </Button.Style>
                     <Button.Template>
-                        <ControlTemplate TargetType="Button">
+                        <ControlTemplate TargetType="{x:Type Button}">
                             <Border Width="85" Height="20"
                                         CornerRadius="8"
                                         Background="{TemplateBinding Background}">
@@ -116,8 +128,16 @@
             <StackPanel Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2">
                 <ScrollViewer VerticalScrollBarVisibility="Auto" Height="200">
                     <!-- DataGrid tablo görünümü -->
-                    <DataGrid ItemsSource="{Binding DataTable}" AutoGenerateColumns="True" CanUserAddRows="False" Margin="0,0,0,0" Width="660">
+                    <DataGrid ItemsSource="{Binding DataTable}" AutoGenerateColumns="True" CanUserAddRows="False" Margin="0,0,0,0" Width="768" Height="190">
+                        <DataGrid.Resources>
+                            <Style TargetType="ScrollViewer">
+                                <Setter Property="HorizontalScrollBarVisibility" Value="Visible"/>
+                            </Style>
+                            
+                        </DataGrid.Resources>
+                        
                     </DataGrid>
+                    
                 </ScrollViewer>
             </StackPanel>
         </Grid>

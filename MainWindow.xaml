@@ -34,8 +34,9 @@
             </Grid.RowDefinitions>
             <StackPanel Grid.Column="0"
                         Grid.ColumnSpan="2"
-                        Grid.Row="0">
-                <Ellipse Fill="Red" Margin="0,5,10,0" Height="23" Width="23" HorizontalAlignment="Right" ToolTip="Kapat" MouseLeftButtonDown="closeApp" Cursor="Hand"/>
+                        Grid.Row="0"
+                        Background="#FF26344B">
+                <Ellipse Fill="Red" Margin="0,4,10,0" Height="23" Width="23" HorizontalAlignment="Right" ToolTip="Kapat" MouseLeftButtonDown="closeApp" Cursor="Hand"/>
                 <Ellipse Fill="Yellow" Margin="0,-23,40,0" Height="23" Width="23" HorizontalAlignment="Right" VerticalAlignment="Top" ToolTip="Simge Durumuna" MouseLeftButtonDown="minimizaApp" Cursor="Hand"/>
 
             </StackPanel>

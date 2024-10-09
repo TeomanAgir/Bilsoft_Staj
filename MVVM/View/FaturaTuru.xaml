@@ -27,9 +27,7 @@
 
             </Grid.RowDefinitions>
             <StackPanel Grid.Row="0" Grid.Column="0">
-                <TextBlock Foreground="#FF26344B" FontWeight="Bold" FontSize="18" >
-                    Çevrimdışı e-Fatura Analizi
-                </TextBlock>
+                <TextBlock Foreground="#FF26344B" FontWeight="Bold" FontSize="18" ><Run Text="Çevrimdışı e-Fatura Analizi"/><Run Language="tr-tr" Text=" "/><Run Language="en-gb" Text="- Fatura T"/><Run Language="tr-tr" Text="ürü"/></TextBlock>
             </StackPanel>
             <StackPanel Grid.Column="0"
                         Grid.Row="1"
@@ -112,7 +110,12 @@
             <StackPanel Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2">
                 <ScrollViewer VerticalScrollBarVisibility="Auto" Height="200">
                     <!-- DataGrid tablo görünümü -->
-                    <DataGrid ItemsSource="{Binding DataTable}" AutoGenerateColumns="True" CanUserAddRows="False" Margin="0,0,0,0">
+                    <DataGrid ItemsSource="{Binding DataTable}" AutoGenerateColumns="True" CanUserAddRows="False" Margin="0,0,0,0" Width="380" Height="190" HorizontalAlignment="Left">
+                        <DataGrid.Resources>
+                            <Style TargetType="ScrollViewer">
+                                <Setter Property="HorizontalScrollBarVisibility" Value="Visible"/>
+                            </Style>
+                        </DataGrid.Resources>
                     </DataGrid>
                 </ScrollViewer>
             </StackPanel>

@@ -9,6 +9,7 @@ using Microsoft.Win32;
 using System.Diagnostics;
 using System.IO;
 using System.Windows;
+using System.Reflection;
 
 
 namespace Bilsoft.MVVM.ViewModel
@@ -121,10 +122,12 @@ namespace Bilsoft.MVVM.ViewModel
         }
         private void RunPythonExe(string selectedFilePath)
         {
-            // .exe dosyasının yolu
-            //string exePath = Path.Combine(AppContext.BaseDirectory, "scripts", "scriptexe", "dist", "son.exe");
-            string exePath = @"C:\Users\teoma\source\repos\Bilsoft\scripts\scriptexe\dist\son.exe";
-            Debug.WriteLine(exePath);  // Bu satır exePath'in doğru olup olmadığını kontrol etmek için
+            //string exePath = @"C:\Users\Teoman\source\repos\TeomanAgir\Bilsoft_Staj\scripts\scriptexe\dist\son.exe";
+            string appDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+            string projectDirectory = Directory.GetParent(appDirectory).Parent.Parent.FullName;
+            string exePath = Path.Combine(projectDirectory, "scripts", "scriptexe", "dist", "son.exe");
+            
+            Debug.WriteLine("Exe yolu: " + exePath);  // Bu satır exePath'in doğru olup olmadığını kontrol etmek için
 
             ProcessStartInfo start = new ProcessStartInfo
             {

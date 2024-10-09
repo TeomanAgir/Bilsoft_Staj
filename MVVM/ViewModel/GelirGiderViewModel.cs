@@ -13,6 +13,7 @@ using System.Collections.Generic;
 using LiveChartsCore.SkiaSharpView.Painting;
 using LiveChartsCore.Drawing;
 using LiveChartsCore.Measure;
+using System.Diagnostics;
 
 namespace Bilsoft.MVVM.ViewModel
 {
@@ -36,6 +37,27 @@ namespace Bilsoft.MVVM.ViewModel
                 _selectedYear = value;
                 OnPropertyChanged(nameof(SelectedYear)); // UI'ye değişiklik olduğunu bildirir
                 UpdateChart(); // Değişiklikten sonra grafiği güncelle
+            }
+        }
+        private double _islemYapilanGunSayisi;
+        public double IslemYapilanGunSayisi
+        {
+            get => _islemYapilanGunSayisi;
+            set
+            {
+                _islemYapilanGunSayisi = value;
+                OnPropertyChanged(nameof(IslemYapilanGunSayisi)); // UI'yi güncellemek için
+            }
+        }
+        
+        private double _aylikNetKazanc;
+        public double AylikNetKazanc
+        {
+            get => _aylikNetKazanc;
+            set
+            {
+                _aylikNetKazanc = value;
+                OnPropertyChanged(nameof(AylikNetKazanc)); // UI'yi güncellemek için
             }
         }
 
@@ -68,7 +90,7 @@ namespace Bilsoft.MVVM.ViewModel
             {
                 new Axis
                 {
-                    Labels = new List<string> { "Çalışılan Gün Sayısı", "Gelir", "Gider"}, // Sabit etiketler
+                    Labels = new List<string> { "Gelir", "Gider"}, // Sabit etiketler
                    
                     TextSize = 10,
 
@@ -130,12 +152,16 @@ namespace Bilsoft.MVVM.ViewModel
 
             // İlk veri setini alıyoruz
             var values = filteredData.FirstOrDefault() ?? new double[] { 0, 0, 0, 0 };
+            Debug.WriteLine(string.Join(", ", values));
+
+            IslemYapilanGunSayisi = values[0];
+            AylikNetKazanc = values[1] - values[2];
 
             Series = new ObservableCollection<ISeries>
             {
                 new ColumnSeries<double>
                 {
-                    Values = values,
+                    Values = values.Skip(1).ToArray(),
                     Padding = 0
 
                 }
