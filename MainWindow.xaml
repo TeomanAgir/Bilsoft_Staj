@@ -1,0 +1,176 @@
+﻿<Window x:Class="Bilsoft.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Bilsoft"
+        xmlns:lvc="clr-namespace:LiveChartsCore.SkiaSharpView.WPF;assembly=LiveChartsCore.SkiaSharpView.WPF"
+        xmlns:viewmodel="clr-namespace:Bilsoft.MVVM.ViewModel"
+        mc:Ignorable="d"
+        Height="600" Width="1000"
+        WindowStyle = "None"
+        ResizeMode="NoResize"
+        Background="Transparent"
+        AllowsTransparency="True">
+
+    <Window.DataContext>
+        <viewmodel:MainViewModel/>
+    </Window.DataContext>
+
+    <Border Background="White">
+        <Grid>
+
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="45"/>
+                <RowDefinition Height="100"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Column="0"
+                        Grid.ColumnSpan="2"
+                        Grid.Row="0">
+                <Ellipse Fill="Red" Margin="0,5,10,0" Height="23" Width="23" HorizontalAlignment="Right" ToolTip="Kapat" MouseLeftButtonDown="closeApp" Cursor="Hand"/>
+                <Ellipse Fill="Yellow" Margin="0,-23,40,0" Height="23" Width="23" HorizontalAlignment="Right" VerticalAlignment="Top" ToolTip="Simge Durumuna" MouseLeftButtonDown="minimizaApp" Cursor="Hand"/>
+
+            </StackPanel>
+            <StackPanel Grid.Column="0"
+                        Grid.Row="0"
+                        Background="#FF26344B" Grid.RowSpan="2">
+                <Border Margin="25">
+                    <Image Source="/images/bil.png"/>
+                </Border>
+            </StackPanel>
+            <StackPanel Grid.Row="2"
+                        Background="#FF26344B">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="105" />
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="20"/>
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+
+                    <Button Content="Dosya Seçimi"
+                             Foreground="White"
+                             FontSize="14"
+                             FontWeight="Medium"
+                             Margin="0,5,0,5" Cursor="Hand"
+                             Command="{Binding DosyaSecCommand}">
+
+
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Setter Property="Background" Value="#FF898989"/>
+                                <Setter Property="Cursor" Value="Hand"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True" >
+                                        <Setter Property="Background" Value="#FF757575"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Width="90" Height="25"
+                                        CornerRadius="10"
+                                        Margin="5,0,0,0"
+                                        Background="{TemplateBinding Background}">
+
+                                    <ContentPresenter VerticalAlignment="center" HorizontalAlignment="Center"/>
+
+                                </Border>
+
+
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+
+                    <Button Content="Analizi Başlat"
+                            Grid.Row="2"
+                             Foreground="White"
+                             FontSize="14"
+                             FontWeight="Medium" Cursor="Hand"
+                             Command="{Binding AnalizEtCommand}"
+                            Grid.ColumnSpan="2">
+
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Setter Property="Background" Value="#FFF48021"/>
+                                <Setter Property="Cursor" Value="Hand"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True" >
+                                        <Setter Property="Background" Value="#FFC86A1C"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Width="180" Height="30"
+                                        CornerRadius="12"
+                                        Background="{TemplateBinding Background}">
+
+                                    <ContentPresenter VerticalAlignment="center" HorizontalAlignment="Center"/>
+
+                                </Border>
+
+
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                    <TextBlock VerticalAlignment="Top" Grid.Row="1" Text="{Binding SelectedFilePath}" Margin="10,0,10,0" Foreground="White" Grid.ColumnSpan="2" FontSize="10"/>
+                </Grid>
+
+
+
+
+            </StackPanel>
+            <StackPanel Grid.Row="3"
+                        Background="#FF26344B">
+                <RadioButton Content="Ana Sayfa"
+                             Height="50"
+                             FontSize="14"
+                             IsChecked="True"
+                             Command="{Binding AnaSayfaViewCommand}"
+                             Style="{StaticResource MenuButtonTheme}"/>
+
+                <RadioButton Content="Fatura Türü&#xA;Analizi"
+                             Height="50"
+                             FontSize="14"
+                             Command="{Binding FaturaTuruViewCommand}"
+                             Style="{StaticResource MenuButtonTheme}"/>
+
+                <RadioButton Content="eFatura Senaryo&#xA;Analizi"
+                             Height="50"
+                             FontSize="14"
+                             Command="{Binding eFaturaViewCommand}"
+                             Style="{StaticResource MenuButtonTheme}"/>
+
+                <RadioButton Content="Gelir Gider"
+                             Height="50"
+                             FontSize="14"
+                             Command="{Binding GelirGiderViewCommand}"
+                             Style="{StaticResource MenuButtonTheme}"/>
+
+                <TextBlock Text="{Binding StatusMessage}" Margin="10" Foreground="Green"/>
+            </StackPanel>
+
+            <ContentControl Grid.Column="1"
+                            Grid.Row="1"
+                            Grid.RowSpan="3"
+                            Margin="10,10,10,10"
+                            Content="{Binding CurrentView}"/>
+
+
+        </Grid>
+    </Border>
+</Window>

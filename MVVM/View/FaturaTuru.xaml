@@ -1,0 +1,122 @@
+﻿<UserControl x:Class="Bilsoft.MVVM.View.FaturaTuru"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:lvc="clr-namespace:LiveChartsCore.SkiaSharpView.WPF;assembly=LiveChartsCore.SkiaSharpView.WPF" 
+             xmlns:viewmodel="clr-namespace:Bilsoft.MVVM.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:FaturaTuruViewModel}"
+             mc:Ignorable="d"
+             d:DesignHeight="575" d:DesignWidth="800">
+
+
+    <Border>
+        <Grid>
+            <Grid.ColumnDefinitions>
+
+                <ColumnDefinition Width="400"/>
+                <ColumnDefinition/>
+
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="300"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition/>
+
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="0" Grid.Column="0">
+                <TextBlock Foreground="#FF26344B" FontWeight="Bold" FontSize="18" >
+                    Çevrimdışı e-Fatura Analizi
+                </TextBlock>
+            </StackPanel>
+            <StackPanel Grid.Column="0"
+                        Grid.Row="1"
+                        Grid.ColumnSpan="2">
+                <Border >
+                    <!-- Bar Chart -->
+                    <lvc:CartesianChart Height="290" Width="780"
+                                    HorizontalAlignment="Center" 
+                                    Series="{Binding Series}"
+                                    ZoomMode="Both"
+                                    XAxes="{Binding XAxes}"
+                                    Padding="0">
+                        
+                    </lvc:CartesianChart>
+                </Border>
+            </StackPanel>
+            <StackPanel Grid.Row="2" Orientation="Horizontal">
+
+                <ComboBox x:Name="MonthsComboBox" Width="80" Height="20" 
+                          HorizontalAlignment="Center" 
+                          VerticalAlignment="Center"
+                          Foreground="Black"
+                          SelectedIndex="0" 
+                          ItemsSource="{Binding AvailableMonths}" SelectedItem="{Binding SelectedMonth}" />
+
+                <ComboBox x:Name="YearsComboBox" 
+                          Width="80" Height="20" 
+                          HorizontalAlignment="Center" VerticalAlignment="Center"
+                          Margin="10,0,0,0"
+                          SelectedIndex="0"
+                          Foreground="Black"
+                          ItemsSource="{Binding AvailableYears}" SelectedItem="{Binding SelectedYear}" />
+
+                <Button Height="20" Margin="10,0,0,0"
+                        Content="Tabloyu Yenile" Command="{Binding RefreshCommand}"
+                        HorizontalAlignment="Center" VerticalAlignment="Center"
+                        Foreground="White" Cursor="Hand">
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Background" Value="#FFF48021"/>
+                            <Setter Property="Cursor" Value="Hand"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True" >
+                                    <Setter Property="Background" Value="#FFC86A1C"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border Width="85" Height="20"
+                                        CornerRadius="8"
+                                        Background="{TemplateBinding Background}">
+
+                                <ContentPresenter VerticalAlignment="center" HorizontalAlignment="Center"/>
+
+                            </Border>
+
+
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+            </StackPanel>
+            <StackPanel Grid.Row="2" Grid.Column="1"
+                        Grid.RowSpan="2">
+                <Border Height="240" Width="380" Margin="10,10,10,10">
+                    <StackPanel Orientation="Vertical" >
+                        <TextBlock Margin="20" FontSize="16" Foreground="Black">
+                            <TextBlock.Text>
+                                Doldurulacak text
+                            </TextBlock.Text>
+                        </TextBlock>
+
+                    </StackPanel>
+
+
+                </Border>
+
+            </StackPanel>
+            <StackPanel Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2">
+                <ScrollViewer VerticalScrollBarVisibility="Auto" Height="200">
+                    <!-- DataGrid tablo görünümü -->
+                    <DataGrid ItemsSource="{Binding DataTable}" AutoGenerateColumns="True" CanUserAddRows="False" Margin="0,0,0,0">
+                    </DataGrid>
+                </ScrollViewer>
+            </StackPanel>
+        </Grid>
+    </Border>
+
+</UserControl>
