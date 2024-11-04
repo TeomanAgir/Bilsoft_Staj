@@ -9,7 +9,7 @@
              d:DesignHeight="575" d:DesignWidth="800">
 
 
-    <Border>
+    <Border Background="White">
         <Grid>
             <Grid.ColumnDefinitions>
 
@@ -45,7 +45,7 @@
             </StackPanel>
             <StackPanel Grid.Row="2" Orientation="Horizontal">
 
-                <ComboBox x:Name="MonthsComboBox" Width="80" Height="20" 
+                <ComboBox x:Name="MonthsComboBox" Width="80" Height="20" Margin="15,0,0,0" 
                           HorizontalAlignment="Center" 
                           VerticalAlignment="Center"
                           Foreground="Black"
@@ -116,7 +116,7 @@
             <StackPanel Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="1">
                 <ScrollViewer VerticalScrollBarVisibility="Auto" Height="200">
                     <!-- DataGrid tablo görünümü -->
-                    <DataGrid ItemsSource="{Binding DataTable}" AutoGenerateColumns="True" CanUserAddRows="False" Margin="0,0,0,0" Height="190" Width="294">
+                    <DataGrid ItemsSource="{Binding DataTable}" AutoGenerateColumns="True" CanUserAddRows="False" Margin="0,0,0,0" Height="176" Width="294">
                         <DataGrid.Resources>
                             <Style TargetType="ScrollViewer">
                                 <Setter Property="HorizontalScrollBarVisibility" Value="Visible"/>

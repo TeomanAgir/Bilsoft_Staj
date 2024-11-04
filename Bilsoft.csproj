@@ -7,16 +7,22 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Analizler\**" />
+    <Compile Remove="fonts\**" />
+    <EmbeddedResource Remove="Analizler\**" />
+    <EmbeddedResource Remove="fonts\**" />
+    <None Remove="Analizler\**" />
+    <None Remove="fonts\**" />
+    <Page Remove="Analizler\**" />
+    <Page Remove="fonts\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="images\bil.png" />
   </ItemGroup>
 
   <ItemGroup>
     <Resource Include="images\bil.png" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="fonts\" />
-    <Folder Include="Analizler\" />
   </ItemGroup>
 
   <ItemGroup>

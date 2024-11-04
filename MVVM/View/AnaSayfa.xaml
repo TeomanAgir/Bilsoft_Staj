@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:Bilsoft.MVVM.View"
              mc:Ignorable="d" 
              d:DesignHeight="460" d:DesignWidth="800">
-    <StackPanel>
+    <StackPanel Background="Transparent">
 
         
         <StackPanel Orientation="Horizontal">
@@ -28,33 +28,23 @@
 
                 <Grid>
                     <StackPanel>
-                        <TextBlock Text="World Leader&#x0a;in Global Finance" 
+                        <TextBlock Text="Bilsoft Çevrimdışı&#x0a;Analiz Modülü" 
                                    Foreground="White"
                                    FontSize="28"
                                    Margin="20,10,10,0"/>
-                        <TextBlock Text="Get Started Today!" 
+                        <TextBlock Text="Tüm Özetleriniz&#x0a;Saniyeler İçinde!"
                                    Foreground="White"
                                    FontSize="18"
                                    Margin="20,10,10,0"/>
+                        
                     </StackPanel>
-                    <Image Width="250"
-                           Height="250"
-                           Source="/images/bilsoft.png" Margin="216,5,-66,-55" RenderTransformOrigin="0.5,0.5">
-                        <Image.RenderTransform>
-                            <TransformGroup>
-                                <ScaleTransform/>
-                                <SkewTransform/>
-                                <RotateTransform Angle="-8.128"/>
-                                <TranslateTransform/>
-                            </TransformGroup>
-                        </Image.RenderTransform>
-                    </Image>
+                    <Image Source="/images/pnn.png" Width="150" Height="150" Margin="250,50,0,0"/>
                 </Grid>
             </Border>
 
             <Border Width="200"
                     Height="200"
-                    Margin="50,0,0,0"
+                    Margin="50,0,0,10"
                     CornerRadius="10">
 
                 <Border.Background>
@@ -64,13 +54,21 @@
                         <GradientStop Color="#FFCA9119" Offset="1"/>
                     </LinearGradientBrush>
                 </Border.Background>
+                <Grid>
+                    <Image Source="/images/pgg.png" Width="150" Height="150" Margin="0,90,80,0"/>
+                    <TextBlock Text="Yüksek Doğruluk&#x0a;Hızlı Sonuçlar" 
+                            Foreground="White"
+                            FontSize="23"
+                            Margin="20,10,10,0"/>
+                </Grid>
+                
 
             </Border>
 
         </StackPanel>
 
         <StackPanel>
-            <TextBlock Text="Most Watched"
+            <TextBlock Text="Uygulama Neleri İçeriyor?"
                    FontSize="20"
                    Foreground="White"
                    HorizontalAlignment="Left"
@@ -87,24 +85,36 @@
                         Background="#844eff"
                         CornerRadius ="10"
                         Margin="0">
+                    <TextBlock Height="100" Background="Transparent" Width="140" Text="Aylık E-Fatura&#x0a;Analizi" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" >
+                        
+                    </TextBlock>
 
                 </Border>
                 <Border Width="150"
                         Height="150"
                         Background="#4eff91"
                         CornerRadius ="10">
+                    <TextBlock Height="100" Background="Transparent" Width="140" Text="Aylık Fatura&#x0a;Türleri Analizi" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center">
+
+                    </TextBlock>
 
                 </Border>
                 <Border Width="150"
                         Height="150"
                         Background="#4e99ff"
                         CornerRadius ="10">
+                    <TextBlock Height="100" Background="Transparent" Width="140" Text="Aylık Gelir ve &#x0a;Gider Tabloları" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" >
+
+                    </TextBlock>
 
                 </Border>
                 <Border Width="150"
                         Height="150"
                         Background="#ecff4e"
                         CornerRadius ="10">
+                    <TextBlock Height="100" Background="Transparent" Width="140" Text="Gerçek Zamanlı&#x0a;Dinamik grafik&#x0a;ve tablolar!" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" >
+
+                    </TextBlock>
 
                 </Border>
 

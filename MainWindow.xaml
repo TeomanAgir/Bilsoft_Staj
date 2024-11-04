@@ -17,7 +17,7 @@
         <viewmodel:MainViewModel/>
     </Window.DataContext>
 
-    <Border Background="White">
+    <Border Background="#FF26344B">
         <Grid>
 
 
